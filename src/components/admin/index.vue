@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import Header from "./Header.vue";
 import LeftMenu from "./LeftMenu.vue";
-import RightMain from "./RightMain.vue";
 </script>
 <template>
   <div class="common-layout">
@@ -14,7 +13,7 @@ import RightMain from "./RightMain.vue";
           <left-menu />
         </el-aside>
         <el-main>
-          <right-main />
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>

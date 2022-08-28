@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { login } from "@/api/api";
+import router from "@/router";
 import { FormInstance } from "element-plus";
 import { reactive, ref } from "vue";
-interface LoginFormInt {
+
+export interface LoginFormInt {
   username: string;
   password: string;
 }
@@ -46,7 +49,11 @@ const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.validate((valid) => {
     if (valid) {
-      console.log("submit!");
+      login(data.ruleForm.username, data.ruleForm.password).then((val) => {
+        console.log(val);
+        localStorage.setItem("token", val.data.token);
+        router.push("/");
+      });
     } else {
       console.log("error submit!");
       return false;
@@ -95,7 +102,7 @@ const resetForm = () => {
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .form-container {
   display: flex;
   flex-direction: row;

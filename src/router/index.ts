@@ -5,7 +5,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
-
+import Goods from "../components/goods/Goods.vue";
+import User from "../components/user/User.vue";
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
@@ -14,6 +15,26 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
+    children: [
+      {
+        path: "goods",
+        name: "goods",
+        meta: {
+          isShow: true,
+          title: "商品列表",
+        },
+        component: Goods,
+      },
+      {
+        path: "user",
+        name: "user",
+        meta: {
+          isShow: true,
+          title: "用户列表",
+        },
+        component: User,
+      },
+    ],
   },
 
   {
